@@ -43,6 +43,8 @@ export default async function handler(
     });
 
     if (!telegramResponse.ok) {
+      const errorData = await telegramResponse.json();
+      console.error('Telegram API error:', errorData);
       throw new Error('Failed to send message to Telegram');
     }
 
