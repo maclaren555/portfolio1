@@ -28,6 +28,7 @@ const Home: React.FC = () => {
       </div>
       <About /> {/* Добавляем секцию About */}
       <Skills /> {/* Добавляем Skills */}
+      <div className="h-[10rem] bg-[black]"></div> {/* Spacer */}
       <Contact /> {/* Добавляем Contact */}
     </main>
   );
