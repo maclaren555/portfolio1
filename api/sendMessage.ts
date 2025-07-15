@@ -17,6 +17,9 @@ export default async function handler(
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
+  // DEBUG: Log the token to verify it's correct
+  console.log(`Using token: ${botToken ? botToken.substring(0, 5) + '...' + botToken.slice(-5) : 'Not Set'}`);
+
   if (!botToken || !chatId) {
     return response.status(500).json({ message: 'Server configuration error' });
   }
