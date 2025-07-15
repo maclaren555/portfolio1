@@ -8,7 +8,7 @@ import htmlIcon from '../assets/icons/html.svg';
 import cssIcon from '../assets/icons/css.svg';
 import jsIcon from '../assets/icons/javascript.svg';
 import reactIcon from '../assets/icons/react.svg';
-import viteIcon from '../assets/icons/Vite.svg';
+import viteIcon from '../assets/icons/vite.svg';
 import tsIcon from '../assets/icons/typescript.svg';
 import tailwindIcon from '../assets/icons/tailwind.svg';
 import framerIcon from '../assets/icons/framer-motion.svg';
