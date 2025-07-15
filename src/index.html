@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Оставляем пустой href, его заполнит скрипт -->
+    <link rel="icon" type="image/svg+xml" href="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>maclaren555 | Frontend Developer</title>
+
+    <!-- Скрипт для динамической загрузки иконки -->
+    <script type="module">
+      import viteIcon from './assets/icons/vite.svg';
+      document.querySelector('link[rel="icon"]').setAttribute('href', viteIcon);
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-gray-950 text-gray-200">
+    <div id="root"></div>
+    <!-- Исправляем путь к main.tsx -->
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>
