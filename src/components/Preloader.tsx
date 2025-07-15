@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 const Preloader: React.FC = () => {
   const [count, setCount] = useState(0);
@@ -20,7 +20,7 @@ const Preloader: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const textVariants = {
+  const textVariants: Variants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
     exit: { opacity: 0, y: -20, transition: { duration: 0.4, ease: 'easeIn' } },

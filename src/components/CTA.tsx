@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Transition } from 'framer-motion';
 import { useCursorStore } from '../store/cursorStore';
 
 const MarqueeText: React.FC = () => {
@@ -17,7 +17,7 @@ const MarqueeText: React.FC = () => {
 const CTA: React.FC = () => {
   const { setCursorType } = useCursorStore();
 
-  const marqueeTransition = {
+  const marqueeTransition: Transition = {
     duration: 80,
     ease: 'linear',
     repeat: Infinity,

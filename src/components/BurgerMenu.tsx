@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 const BurgerMenu: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ const BurgerMenu: React.FC = () => {
         setIsOpen(false);
     };
 
-    const menuVariants = {
+    const menuVariants: Variants = {
         closed: {
             x: '100%',
             transition: {
@@ -31,7 +31,7 @@ const BurgerMenu: React.FC = () => {
         }
     };
 
-    const linkVariants = {
+    const linkVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: (i: number) => ({
             opacity: 1,
