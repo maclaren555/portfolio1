@@ -160,14 +160,20 @@ const About = () => {
 										if (titleRef.current) titleRef.current.innerText = video.title;
 										if (videoRef.current) {
 											videoRef.current.src = video.src;
-											videoRef.current.play();
+											videoRef.current.load();
+											videoRef.current.onloadeddata = () => {
+												if (videoRef.current) videoRef.current.play().catch(() => {});
+											};
 										}
 									},
 									onReverseComplete: () => {
 										if (titleRef.current) titleRef.current.innerText = previousVideo.title;
 										if (videoRef.current) {
 											videoRef.current.src = previousVideo.src;
-											videoRef.current.play();
+											videoRef.current.load();
+											videoRef.current.onloadeddata = () => {
+												if (videoRef.current) videoRef.current.play().catch(() => {});
+											};
 										}
 									},
 								}

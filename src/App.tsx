@@ -14,10 +14,24 @@ import ProjectPage from './pages/ProjectPage'; // Импортируем стр�
 import ScrollToTop from './components/ScrollToTop';
 import BurgerMenu from './components/BurgerMenu'; // Импортируем бургер-меню
 import Preloader from './components/Preloader'; // Импортируем Preloader
+import { useLenisStore } from './store/lenisStore';
 
 const Home: React.FC = () => {
   // Вызываем хук для активации плавной прокрутки
   useSmoothScroll();
+  const { lenis } = useLenisStore();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true, force: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    }, 100); // Slight delay for init
+    return () => clearTimeout(timer);
+  }, [lenis]);
+
   return (
     <main className="w-full min-h-screen bg-[oklch(0.18_0_0)] text-[#e5e7eb]">
       <BurgerMenu /> {/* Добавляем бургер-меню */}

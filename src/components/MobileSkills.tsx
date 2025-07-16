@@ -1,73 +1,67 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-// Define Skill type and data locally
-interface Skill {
-  name: string;
-  description: string;
-  color: string;
+// Определяем пропсы для компонента
+interface MobileSkillsProps {
+  skills: {
+    name: string;
+    iconSrc: string;
+    glowColor: string;
+  }[];
 }
 
-const skills: Skill[] = [
-  {
-    name: 'React',
-    description: 'A JavaScript library for building user interfaces.',
-    color: '#61DAFB',
-  },
-  {
-    name: 'TypeScript',
-    description: 'A typed superset of JavaScript that compiles to plain JavaScript.',
-    color: '#3178C6',
-  },
-  {
-    name: 'JavaScript',
-    description: 'The programming language of the Web.',
-    color: '#F7DF1E',
-  },
-  {
-    name: 'Tailwind CSS',
-    description: 'A utility-first CSS framework for rapid UI development.',
-    color: '#38B2AC',
-  },
-  {
-    name: 'Framer Motion',
-    description: 'A production-ready motion library for React.',
-    color: '#0055FF',
-  },
-  {
-    name: 'Node.js',
-    description: 'A JavaScript runtime built on V8.',
-    color: '#339933',
-  },
-];
-
+// Исправленная анимация
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1 
+  },
 };
 
-const MobileSkills: React.FC = () => {
+const MobileSkills: React.FC<MobileSkillsProps> = ({ skills }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+  const isInView = useInView(containerRef, { once: true, amount: 0.15 });
 
   return (
-    <div ref={containerRef} className="py-[5rem] px-[2rem]">
-      <h2 className="text-[2.5rem] font-[700] text-center mb-[3rem] text-white">
-        Technical Skills
+    <div ref={containerRef} className="relative overflow-hidden py-[128px] px-[24px] bg-black">
+      <h2 className="relative z-[2] text-[2.5rem] font-[800] text-center mb-[64px] text-white">
+        My Technical Skills
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-[1.5rem] w-full">
+      <div className="relative z-[2] grid grid-cols-2 gap-[24px] w-full">
         {skills.map((skill, index) => (
-          <motion.div 
+          <motion.div
             key={index}
-            className="p-[1.5rem] rounded-[1rem] flex flex-col items-center text-center"
-            style={{ border: `1px solid ${skill.color}`, boxShadow: `0 0 15px ${skill.color}33` }}
+            className="relative flex aspect-square flex-col items-center justify-center rounded-[24px] overflow-hidden bg-[rgba(206, 224, 6, 0.99)] border border-[rgba(255,255,255,0.4)] backdrop-blur-[20px] shadow-[0_4px_16px_rgba(255,255,255,0.2)]"
             variants={cardVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            animate={isInView ? 'visible' : 'hidden'}
+            transition={{ duration: 0.7, ease: "circOut", delay: index * 0.1 }}
           >
-            <h3 className="text-white font-[600] text-[1.1rem] mb-[0.5rem]">{skill.name}</h3>
-            <p className="text-gray-400 text-[0.9rem]">{skill.description}</p>
+            {/* Светлое стекло эффект */}
+            <div className="absolute inset-0 bg-[rgba(35, 234, 29, 0.79)] backdrop-blur-[12px]"></div>
+            {/* Блики */}
+            <div className="absolute top-0 left-0 w-full h-[70%] bg-gradient-to-b from-[rgba(223, 13, 13, 0.5)] to-transparent"></div>
+            {/* Свечение */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `radial-gradient(circle at center, ${skill.glowColor}15 0%, transparent 70%)`,
+                filter: 'blur(24px)',
+              }}
+            />
+            {/* Контент */}
+            <div className="relative z-10 flex flex-col items-center justify-center p-4">
+              <img
+                src={skill.iconSrc}
+                alt={`${skill.name} icon`}
+                className="w-[56px] h-[56px] mb-[20px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]"
+              />
+              <h3 className="text-[1.2rem] font-[700] text-gray-900 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                {skill.name}
+              </h3>
+            </div>
           </motion.div>
         ))}
       </div>

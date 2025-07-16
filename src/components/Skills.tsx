@@ -224,7 +224,7 @@ const Skills: React.FC = () => {
                     </div>
                 </div>
             ) : (
-                <MobileSkills />
+                <MobileSkills skills={skillsData} />
             )}
         </section>
     );
